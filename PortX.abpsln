@@ -1,0 +1,189 @@
+{
+  "id": "8eb579b5-e809-442f-b09f-e972b9f218be",
+  "template": "app",
+  "versions": {
+    "LeptonX": "3.3.3",
+    "AbpFramework": "8.3.3",
+    "AbpCommercial": "8.3.3",
+    "AbpStudio": "0.9.5"
+  },
+  "modules": {
+    "PortX": {
+      "path": "PortX.abpmdl"
+    }
+  },
+  "runProfiles": {
+    "Default": {
+      "path": "etc/abp-studio/run-profiles/Default.abprun.json"
+    }
+  },
+  "k8sProfiles": {
+    "local": {
+      "path": "etc/abp-studio/k8s-profiles/local.abpk8s.json"
+    }
+  },
+  "commands": {
+    "helmBuildDotnetImage": {
+      "triggerTargets": [
+        "HELM_CHARTS_ROOT",
+        "HELM_MAIN_CHART",
+        "HELM_SUB_CHART"
+      ],
+      "executionTargets": [
+        "HELM_MAIN_CHART",
+        "HELM_SUB_CHART"
+      ],
+      "displayName": "Build Docker Image(s)",
+      "workingDirectory": "etc/helm",
+      "terminalCommand": "./build-image.ps1 -ProjectPath {{metadata.projectPath}} -ImageName {{metadata.imageName}} -ProjectType {{metadata.projectType}}",
+      "condition": "{{metadata.projectPath != null && metadata.imageName != null && metadata.projectType != null}}"
+    },
+    "helmInstallChart": {
+      "triggerTargets": [
+        "HELM_CHARTS_ROOT",
+        "HELM_MAIN_CHART"
+      ],
+      "executionTargets": [
+        "HELM_MAIN_CHART"
+      ],
+      "displayName": "Install Chart(s)",
+      "workingDirectory": "etc/helm",
+      "terminalCommand": "./install.ps1 -ChartName {{chart.name}} -Namespace {{profile.namespace}} -ReleaseName {{chart.name}}-{{profile.name}} -DotnetEnvironment {{metadata.dotnetEnvironment}} {{~if metadata.k8ssuffix}} -User {{metadata.k8ssuffix}}{{end}}",
+      "requireConfirmation": "true",
+      "confirmationText": "Are you sure to install the chart(s) for the profile {{ profile.name }}?"
+    },
+    "helmUninstallChart": {
+      "triggerTargets": [
+        "HELM_CHARTS_ROOT",
+        "HELM_MAIN_CHART"
+      ],
+      "executionTargets": [
+        "HELM_MAIN_CHART"
+      ],
+      "displayName": "Uninstall Chart(s)",
+      "workingDirectory": "etc/helm",
+      "terminalCommand": "./uninstall.ps1 -Namespace {{profile.namespace}} -ReleaseName {{chart.name}}-{{profile.name}} {{~if metadata.k8ssuffix}} -User {{metadata.k8ssuffix}}{{end}}",
+      "requireConfirmation": "true",
+      "confirmationText": "Are you sure to uninstall the chart(s) for the profile {{profile.name}}?"
+    },
+    "kubernetesRedeploy": {
+      "triggerTargets": [
+        "KUBERNETES_SERVICE"
+      ],
+      "executionTargets": [
+        "KUBERNETES_SERVICE"
+      ],
+      "displayName": "Redeploy",
+      "workingDirectory": "etc/helm",
+      "terminalCommand": "./build-image.ps1 -ProjectPath {{chart.metadata.projectPath}} -ImageName {{chart.metadata.imageName}} -ProjectType {{chart.metadata.projectType}} &&& ./install.ps1 -ChartName {{mainChart.name}} -Namespace {{profile.namespace}} -ReleaseName {{mainChart.name}}-{{profile.name}} -DotnetEnvironment {{mainChart.metadata.dotnetEnvironment}} {{~if metadata.k8ssuffix}} -User {{metadata.k8ssuffix}}{{end}}",
+      "requireConfirmation": "true",
+      "confirmationText": "Are you sure to redeploy the related chart '{{chart.name}}' for the service '{{name}}'?",
+      "condition": "{{chart != null && chart.metadata.projectPath != null && chart.metadata.imageName != null && chart.metadata.projectType != null}}"
+    },
+    "createTlsSecret": {
+      "triggerTargets": [
+        "HELM_CHARTS_ROOT"
+      ],
+      "executionTargets": [
+        "HELM_CHARTS_ROOT"
+      ],
+      "displayName": "Create Self-Signed TLS secret",
+      "workingDirectory": "etc/helm",
+      "terminalCommand": "./create-tls-secrets.ps1 -Namespace {{profile.namespace}} {{~if metadata.k8ssuffix}} -User {{metadata.k8ssuffix}}{{end}}"
+    }
+  },
+  "helm": {
+    "charts": {
+      "portx": {
+        "name": "portx",
+        "path": "etc/helm/portx",
+        "charts": {
+          "angular": {
+            "name": "angular",
+            "path": "etc/helm/portx/charts/angular",
+            "metadata": {
+              "projectPath": "../../angular",
+              "imageName": "portx/angular",
+              "projectType": "angular"
+            },
+            "services": [
+              ".*-angular$"
+            ]
+          },
+          "authserver": {
+            "name": "authserver",
+            "path": "etc/helm/portx/charts/authserver",
+            "metadata": {
+              "projectPath": "../../src/PortX.AuthServer/PortX.AuthServer.csproj",
+              "imageName": "portx/authserver",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-authserver"
+            ]
+          },
+          "dbmigrator": {
+            "name": "dbmigrator",
+            "path": "etc/helm/portx/charts/dbmigrator",
+            "metadata": {
+              "projectPath": "../../src/PortX.DbMigrator/PortX.DbMigrator.csproj",
+              "imageName": "portx/dbmigrator",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-dbmigrator"
+            ]
+          },
+          "httpapihost": {
+            "name": "httpapihost",
+            "path": "etc/helm/portx/charts/httpapihost",
+            "metadata": {
+              "projectPath": "../../src/PortX.HttpApi.Host/PortX.HttpApi.Host.csproj",
+              "imageName": "portx/httpapihost",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-httpapihost"
+            ]
+          },
+          "mysql": {
+            "name": "mysql",
+            "path": "etc/helm/portx/charts/mysql"
+          },
+          "rabbitmq": {
+            "name": "rabbitmq",
+            "path": "etc/helm/portx/charts/rabbitmq"
+          },
+          "redis": {
+            "name": "redis",
+            "path": "etc/helm/portx/charts/redis"
+          },
+        },
+        "metadata": {}
+      }
+    }
+  },
+  "options": {
+    "httpRequests": {
+      "ignoredUrls": [
+        "^/metrics$"
+      ]
+    }
+  },
+  "creatingStudioConfiguration": {
+    "template": "app",
+    "createdAbpStudioVersion": "0.9.5",
+    "tiered": "true",
+    "uiFramework": "angular",
+    "databaseProvider": "ef",
+    "databaseManagementSystem": "mysql",
+    "separateTenantSchema": "false",
+    "theme": "leptonx",
+    "themeStyle": "system",
+    "mobileFramework": "none",
+    "progressiveWebApp": "false",
+    "publicWebsite": "false",
+    "optionalModules": "GDPR FileManagement TextTemplateManagement LanguageManagement AuditLogging SaaS Chat OpenIddictAdmin",
+    "socialLogin": ""
+  }
+}

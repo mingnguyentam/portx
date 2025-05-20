@@ -1,0 +1,4 @@
+image:
+  repository: "portx/authserver"
+  tag: "latest"
+  pullPolicy: IfNotPresent

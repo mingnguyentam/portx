@@ -1,0 +1,4 @@
+image:
+  repository: "portx/httpapihost"
+  tag: "latest"
+  pullPolicy: IfNotPresent

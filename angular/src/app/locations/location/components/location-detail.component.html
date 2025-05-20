@@ -1,0 +1,108 @@
+<abp-modal [busy]="service.isBusy" [(visible)]="service.isVisible">
+  <ng-template #abpHeader>
+    <!--<suite-custom-code-block-0>-->
+    <!--</suite-custom-code-block-0>-->
+    <h3>
+      <!--<suite-custom-code-block-1>-->
+      <!--</suite-custom-code-block-1>-->
+      {{ (service.selected ? 'AbpUi::Edit' : '::NewLocation') | abpLocalization }}
+      <!--<suite-custom-code-block-2>-->
+      <!--</suite-custom-code-block-2>-->
+    </h3>
+    <!--<suite-custom-code-block-3>-->
+    <!--</suite-custom-code-block-3>-->
+  </ng-template>
+
+  <ng-template #abpBody>
+    <!--<suite-custom-code-block-4>-->
+    <!--</suite-custom-code-block-4>-->
+    <form
+      [formGroup]="service.form"
+      id="location"
+      (ngSubmit)="service.submitForm()"
+      validateOnSubmit
+    >
+      <!--<suite-custom-code-block-5>-->
+      <!--</suite-custom-code-block-5>-->
+
+      <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+          <a ngbNavLink>
+            {{ '::Location' | abpLocalization }}
+          </a>
+          <ng-template ngbNavContent>
+            <div class="mt-2 fade-in-top">
+              <div class="mb-3">
+                <label class="form-label" for="location-code">
+                  {{ '::Code' | abpLocalization }}
+                </label>
+
+                <input id="location-code" formControlName="code" class="form-control" autofocus />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="location-type">
+                  {{ '::Type' | abpLocalization }}
+                </label>
+
+                <input id="location-type" formControlName="type" class="form-control" />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="location-name">
+                  {{ '::Name' | abpLocalization }}
+                </label>
+
+                <input id="location-name" formControlName="name" class="form-control" />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="location-country-code">
+                  {{ '::CountryCode' | abpLocalization }}
+                </label>
+
+                <input
+                  id="location-country-code"
+                  formControlName="countryCode"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-check mb-3">
+                <input
+                  type="checkbox"
+                  id="location-is-active"
+                  formControlName="isActive"
+                  class="form-check-input"
+                />
+
+                <label for="location-is-active" class="form-check-label">
+                  {{ '::IsActive' | abpLocalization }}
+                </label>
+              </div>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav"></div>
+
+      <!--<suite-custom-code-block-6>-->
+      <!--</suite-custom-code-block-6>-->
+    </form>
+  </ng-template>
+
+  <ng-template #abpFooter>
+    <!--<suite-custom-code-block-7>-->
+    <!--</suite-custom-code-block-7>-->
+    <button type="button" class="btn btn-secondary" abpClose>
+      {{ 'AbpUi::Cancel' | abpLocalization }}
+    </button>
+    <!--<suite-custom-code-block-8>-->
+    <!--</suite-custom-code-block-8>-->
+    <abp-button iconClass="fa fa-check" buttonType="submit" formName="location">
+      {{ 'AbpUi::Save' | abpLocalization }}
+    </abp-button>
+    <!--<suite-custom-code-block-9>-->
+    <!--</suite-custom-code-block-9>-->
+  </ng-template>
+</abp-modal>

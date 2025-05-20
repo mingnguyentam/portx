@@ -1,0 +1,142 @@
+<abp-modal [busy]="service.isBusy" [(visible)]="service.isVisible">
+  <ng-template #abpHeader>
+    <!--<suite-custom-code-block-0>-->
+    <!--</suite-custom-code-block-0>-->
+    <h3>
+      <!--<suite-custom-code-block-1>-->
+      <!--</suite-custom-code-block-1>-->
+      {{ (service.selected ? 'AbpUi::Edit' : '::NewShippingHistory') | abpLocalization }}
+      <!--<suite-custom-code-block-2>-->
+      <!--</suite-custom-code-block-2>-->
+    </h3>
+    <!--<suite-custom-code-block-3>-->
+    <!--</suite-custom-code-block-3>-->
+  </ng-template>
+
+  <ng-template #abpBody>
+    <!--<suite-custom-code-block-4>-->
+    <!--</suite-custom-code-block-4>-->
+    <form
+      [formGroup]="service.form"
+      id="shipping-history"
+      (ngSubmit)="service.submitForm()"
+      validateOnSubmit
+    >
+      <!--<suite-custom-code-block-5>-->
+      <!--</suite-custom-code-block-5>-->
+
+      <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+          <a ngbNavLink>
+            {{ '::ShippingHistory' | abpLocalization }}
+          </a>
+          <ng-template ngbNavContent>
+            <div class="mt-2 fade-in-top">
+              <div class="mb-3">
+                <label class="form-label" for="shipping-history-creator-name">
+                  {{ '::CreatorName' | abpLocalization }}
+                </label>
+
+                <input
+                  id="shipping-history-creator-name"
+                  formControlName="creatorName"
+                  class="form-control"
+                  autofocus
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="shipping-history-creator-email">
+                  {{ '::CreatorEmail' | abpLocalization }}
+                </label>
+
+                <input
+                  id="shipping-history-creator-email"
+                  formControlName="creatorEmail"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="shipping-history-type">
+                  {{ '::Type' | abpLocalization }}
+                </label>
+
+                <input
+                  type="number"
+                  id="shipping-history-type"
+                  formControlName="type"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="shipping-history-data">
+                  {{ '::Data' | abpLocalization }}
+                </label>
+
+                <input id="shipping-history-data" formControlName="data" class="form-control" />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="shipping-history-extra-data">
+                  {{ '::ExtraData' | abpLocalization }}
+                </label>
+
+                <input
+                  id="shipping-history-extra-data"
+                  formControlName="extraData"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="shipping-history-shipping-root-id">
+                  {{ '::ShippingRootId' | abpLocalization }}
+                </label>
+
+                <input
+                  id="shipping-history-shipping-root-id"
+                  formControlName="shippingRootId"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-check mb-3">
+                <input
+                  type="checkbox"
+                  id="shipping-history-is-created-by-owner"
+                  formControlName="isCreatedByOwner"
+                  class="form-check-input"
+                />
+
+                <label for="shipping-history-is-created-by-owner" class="form-check-label">
+                  {{ '::IsCreatedByOwner' | abpLocalization }}
+                </label>
+              </div>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav"></div>
+
+      <!--<suite-custom-code-block-6>-->
+      <!--</suite-custom-code-block-6>-->
+    </form>
+  </ng-template>
+
+  <ng-template #abpFooter>
+    <!--<suite-custom-code-block-7>-->
+    <!--</suite-custom-code-block-7>-->
+    <button type="button" class="btn btn-secondary" abpClose>
+      {{ 'AbpUi::Cancel' | abpLocalization }}
+    </button>
+    <!--<suite-custom-code-block-8>-->
+    <!--</suite-custom-code-block-8>-->
+    <abp-button iconClass="fa fa-check" buttonType="submit" formName="shipping-history">
+      {{ 'AbpUi::Save' | abpLocalization }}
+    </abp-button>
+    <!--<suite-custom-code-block-9>-->
+    <!--</suite-custom-code-block-9>-->
+  </ng-template>
+</abp-modal>

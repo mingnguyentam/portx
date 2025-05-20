@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}-configmap
+data:
+  dynamic-env.json: |-
+    {
+        "production": "true",
+        "application": {
+            "baseUrl": "{{ include "portx.hosts.angular" . }}",
+            "name": "PortX",
+            "logoUrl": ""
+        },
+        "oAuthConfig": {
+            "issuer": "{{ include "portx.hosts.authserver" . }}",
+            "redirectUri": "{{ include "portx.hosts.angular" . }}",
+            "requireHttps": "true",
+            "clientId": "PortX_App",
+            "responseType": "code",
+            "scope": "offline_access PortX",
+            "strictDiscoveryDocumentValidation": false,
+            "skipIssuerCheck": true
+        },
+        "apis": {
+            "default": {
+                "url": "{{ include "portx.hosts.httpapi" . }}",
+                "rootNamespace": "PortX"
+            }
+        }
+    }
