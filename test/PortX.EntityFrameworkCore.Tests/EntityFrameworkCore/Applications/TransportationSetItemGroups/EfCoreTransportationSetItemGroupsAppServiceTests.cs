@@ -1,0 +1,8 @@
+using PortX.TransportationSetItemGroups;
+using Xunit;
+
+namespace PortX.EntityFrameworkCore.Applications.TransportationSetItemGroups;
+
+public class EfCoreTransportationSetItemGroupsAppServiceTests : TransportationSetItemGroupsAppServiceTests<PortXEntityFrameworkCoreTestModule>
+{
+}

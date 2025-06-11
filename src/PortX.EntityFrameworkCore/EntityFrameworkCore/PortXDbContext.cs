@@ -1,3 +1,7 @@
+using PortX.TransportationSetViewTemplates;
+using PortX.TransportationSetSupplierViewTemplates;
+using PortX.TransportationSetItemGroups;
+using PortX.TransportationSetItems;
 using PortX.ShippingWorkflows;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -32,6 +36,10 @@ public class PortXDbContext :
     ISaasDbContext,
     IIdentityProDbContext
 {
+    public DbSet<TransportationSetViewTemplate> TransportationSetViewTemplates { get; set; } = null!;
+    public DbSet<TransportationSetSupplierViewTemplate> TransportationSetSupplierViewTemplates { get; set; } = null!;
+    public DbSet<TransportationSetItemGroup> TransportationSetItemGroups { get; set; } = null!;
+    public DbSet<TransportationSetItem> TransportationSetItems { get; set; } = null!;
     public DbSet<ShippingWorkflow> ShippingWorkflows { get; set; } = null!;
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
 
@@ -114,6 +122,55 @@ public class PortXDbContext :
                     b.Property(x => x.ConditionSettings).HasColumnName(nameof(ShippingWorkflow.ConditionSettings));
                     b.Property(x => x.rootId).HasColumnName(nameof(ShippingWorkflow.rootId));
                     b.Property(x => x.TransportationSetRootId).HasColumnName(nameof(ShippingWorkflow.TransportationSetRootId));
+                });
+        builder.Entity<TransportationSetItem>(b =>
+                {
+                    b.ToTable(PortXConsts.DbTablePrefix + "TransportationSetItems", PortXConsts.DbSchema);
+                    b.ConfigureByConvention();
+                    b.Property(x => x.TenantId).HasColumnName(nameof(TransportationSetItem.TenantId));
+                    b.Property(x => x.Name).HasColumnName(nameof(TransportationSetItem.Name));
+                    b.Property(x => x.Type).HasColumnName(nameof(TransportationSetItem.Type));
+                    b.Property(x => x.Attributes).HasColumnName(nameof(TransportationSetItem.Attributes));
+                    b.Property(x => x.Order).HasColumnName(nameof(TransportationSetItem.Order));
+                    b.Property(x => x.Category).HasColumnName(nameof(TransportationSetItem.Category));
+                    b.Property(x => x.IsActive).HasColumnName(nameof(TransportationSetItem.IsActive));
+                    b.Property(x => x.IsDefault).HasColumnName(nameof(TransportationSetItem.IsDefault));
+                    b.Property(x => x.RootId).HasColumnName(nameof(TransportationSetItem.RootId));
+                    b.Property(x => x.TransportationSetRootId).HasColumnName(nameof(TransportationSetItem.TransportationSetRootId));
+                    b.Property(x => x.TransportationSetItemGroupRootId).HasColumnName(nameof(TransportationSetItem.TransportationSetItemGroupRootId));
+                });
+        builder.Entity<TransportationSetItemGroup>(b =>
+                {
+                    b.ToTable(PortXConsts.DbTablePrefix + "TransportationSetItemGroups", PortXConsts.DbSchema);
+                    b.ConfigureByConvention();
+                    b.Property(x => x.TenantId).HasColumnName(nameof(TransportationSetItemGroup.TenantId));
+                    b.Property(x => x.Name).HasColumnName(nameof(TransportationSetItemGroup.Name));
+                    b.Property(x => x.Order).HasColumnName(nameof(TransportationSetItemGroup.Order));
+                    b.Property(x => x.Type).HasColumnName(nameof(TransportationSetItemGroup.Type));
+                    b.Property(x => x.RootId).HasColumnName(nameof(TransportationSetItemGroup.RootId));
+                    b.Property(x => x.TransportationSetRootId).HasColumnName(nameof(TransportationSetItemGroup.TransportationSetRootId));
+                });
+        builder.Entity<TransportationSetSupplierViewTemplate>(b =>
+                {
+                    b.ToTable(PortXConsts.DbTablePrefix + "TransportationSetSupplierViewTemplates", PortXConsts.DbSchema);
+                    b.ConfigureByConvention();
+                    b.Property(x => x.TenantId).HasColumnName(nameof(TransportationSetSupplierViewTemplate.TenantId));
+                    b.Property(x => x.SupplierTenantId).HasColumnName(nameof(TransportationSetSupplierViewTemplate.SupplierTenantId));
+                    b.Property(x => x.TransportationSetViewTemplateRootId).HasColumnName(nameof(TransportationSetSupplierViewTemplate.TransportationSetViewTemplateRootId));
+                    b.Property(x => x.SupplierId).HasColumnName(nameof(TransportationSetSupplierViewTemplate.SupplierId));
+                    b.Property(x => x.RootId).HasColumnName(nameof(TransportationSetSupplierViewTemplate.RootId));
+                    b.Property(x => x.ShippingRootId).HasColumnName(nameof(TransportationSetSupplierViewTemplate.ShippingRootId));
+                });
+        builder.Entity<TransportationSetViewTemplate>(b =>
+                {
+                    b.ToTable(PortXConsts.DbTablePrefix + "TransportationSetViewTemplates", PortXConsts.DbSchema);
+                    b.ConfigureByConvention();
+                    b.Property(x => x.TenantId).HasColumnName(nameof(TransportationSetViewTemplate.TenantId));
+                    b.Property(x => x.Name).HasColumnName(nameof(TransportationSetViewTemplate.Name));
+                    b.Property(x => x.Description).HasColumnName(nameof(TransportationSetViewTemplate.Description));
+                    b.Property(x => x.Data).HasColumnName(nameof(TransportationSetViewTemplate.Data));
+                    b.Property(x => x.RootId).HasColumnName(nameof(TransportationSetViewTemplate.RootId));
+                    b.Property(x => x.TransportationSetRootId).HasColumnName(nameof(TransportationSetViewTemplate.TransportationSetRootId));
                 });
     }
 }

@@ -12,6 +12,7 @@ export interface GetTransportationSetItemsInput extends PagedAndSortedResultRequ
   isDefault?: boolean;
   rootId?: string;
   transportationSetRootId?: string;
+  transportationSetItemGroupRootId?: string;
 }
 
 export interface TransportationSetItemCreateDto {
@@ -24,6 +25,7 @@ export interface TransportationSetItemCreateDto {
   isDefault: boolean;
   rootId?: string;
   transportationSetRootId?: string;
+  transportationSetItemGroupRootId?: string;
 }
 
 export interface TransportationSetItemDto extends FullAuditedEntityDto<string> {
@@ -36,6 +38,7 @@ export interface TransportationSetItemDto extends FullAuditedEntityDto<string> {
   isDefault: boolean;
   rootId?: string;
   transportationSetRootId?: string;
+  transportationSetItemGroupRootId?: string;
   concurrencyStamp?: string;
 }
 
@@ -52,6 +55,7 @@ export interface TransportationSetItemExcelDownloadDto {
   isDefault?: boolean;
   rootId?: string;
   transportationSetRootId?: string;
+  transportationSetItemGroupRootId?: string;
 }
 
 export interface TransportationSetItemUpdateDto {
@@ -64,5 +68,6 @@ export interface TransportationSetItemUpdateDto {
   isDefault: boolean;
   rootId?: string;
   transportationSetRootId?: string;
+  transportationSetItemGroupRootId?: string;
   concurrencyStamp?: string;
 }

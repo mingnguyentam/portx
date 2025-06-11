@@ -21,4 +21,36 @@ public static class PortXPermissions
         public const string Create = Default + ".Create";
         public const string Delete = Default + ".Delete";
     }
+
+    public static class TransportationSetItems
+    {
+        public const string Default = GroupName + ".TransportationSetItems";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class TransportationSetItemGroups
+    {
+        public const string Default = GroupName + ".TransportationSetItemGroups";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class TransportationSetSupplierViewTemplates
+    {
+        public const string Default = GroupName + ".TransportationSetSupplierViewTemplates";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class TransportationSetViewTemplates
+    {
+        public const string Default = GroupName + ".TransportationSetViewTemplates";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
 }

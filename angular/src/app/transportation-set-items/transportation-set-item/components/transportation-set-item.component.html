@@ -200,6 +200,21 @@
               </div>
             </div>
 
+            <div class="col-12 col-sm-auto">
+              <div class="mb-3">
+                <label class="form-label" for="transportationSetItemGroupRootIdFilter">
+                  {{ '::TransportationSetItemGroupRootId' | abpLocalization }}
+                </label>
+
+                <input
+                  id="transportationSetItemGroupRootIdFilter"
+                  class="form-control"
+                  [(ngModel)]="filters.transportationSetItemGroupRootId"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </div>
+            </div>
+
             <div class="col-12 col-sm-auto align-self-end mb-3">
               <div class="row">
                 <div class="col-6 col-sm-auto d-grid">
@@ -421,6 +436,14 @@
         >
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{ row.transportationSetRootId }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::TransportationSetItemGroupRoot' | abpLocalization }}"
+          prop="transportationSetItemGroupRootId"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.transportationSetItemGroupRootId }}
           </ng-template>
         </ngx-datatable-column>
         <!--<suite-custom-code-block-9>-->

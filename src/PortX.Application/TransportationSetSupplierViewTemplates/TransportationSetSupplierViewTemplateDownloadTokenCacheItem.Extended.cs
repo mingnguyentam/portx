@@ -1,0 +1,8 @@
+using System;
+
+namespace PortX.TransportationSetSupplierViewTemplates;
+
+[Serializable]
+public class TransportationSetSupplierViewTemplateDownloadTokenCacheItem : TransportationSetSupplierViewTemplateDownloadTokenCacheItemBase
+{
+}
