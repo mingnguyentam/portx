@@ -45,6 +45,7 @@ export abstract class AbstractTransportationSetItemDetailViewService {
       isDefault,
       rootId,
       transportationSetRootId,
+      transportationSetItemGroupRootId,
     } = this.selected || {};
 
     this.form = this.fb.group({
@@ -57,6 +58,7 @@ export abstract class AbstractTransportationSetItemDetailViewService {
       isDefault: [isDefault ?? false, []],
       rootId: [rootId ?? null, []],
       transportationSetRootId: [transportationSetRootId ?? null, []],
+      transportationSetItemGroupRootId: [transportationSetItemGroupRootId ?? null, []],
     });
   }
 

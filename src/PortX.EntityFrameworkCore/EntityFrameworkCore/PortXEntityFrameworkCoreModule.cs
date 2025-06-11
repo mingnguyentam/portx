@@ -1,3 +1,7 @@
+using PortX.TransportationSetViewTemplates;
+using PortX.TransportationSetSupplierViewTemplates;
+using PortX.TransportationSetItemGroups;
+using PortX.TransportationSetItems;
 using PortX.ShippingWorkflows;
 using System;
 using Microsoft.Extensions.DependencyInjection;
@@ -56,6 +60,14 @@ public class PortXEntityFrameworkCoreModule : AbpModule
              * default repositories only for aggregate roots */
             options.AddDefaultRepositories(includeAllEntities: true);
             options.AddRepository<ShippingWorkflow, ShippingWorkflows.EfCoreShippingWorkflowRepository>();
+
+            options.AddRepository<TransportationSetItem, TransportationSetItems.EfCoreTransportationSetItemRepository>();
+
+            options.AddRepository<TransportationSetItemGroup, TransportationSetItemGroups.EfCoreTransportationSetItemGroupRepository>();
+
+            options.AddRepository<TransportationSetSupplierViewTemplate, TransportationSetSupplierViewTemplates.EfCoreTransportationSetSupplierViewTemplateRepository>();
+
+            options.AddRepository<TransportationSetViewTemplate, TransportationSetViewTemplates.EfCoreTransportationSetViewTemplateRepository>();
 
         });
 

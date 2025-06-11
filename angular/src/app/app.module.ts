@@ -54,6 +54,9 @@ import { SHIPPING_WORKFLOW_DISPLAY_ITEMS_SHIPPING_WORKFLOW_DISPLAY_ITEM_ROUTE_PR
 import { COMBINED_LANES_COMBINED_LANE_ROUTE_PROVIDER } from './combined-lanes/combined-lane/providers/combined-lane-route.provider';
 import { COMBINED_LANE_ITEMS_COMBINED_LANE_ITEM_ROUTE_PROVIDER } from './combined-lane-items/combined-lane-item/providers/combined-lane-item-route.provider';
 import { PRODUCT_REQUIRED_DOCUMENT_MASTERS_PRODUCT_REQUIRED_DOCUMENT_MASTER_ROUTE_PROVIDER } from './product-required-document-masters/product-required-document-master/providers/product-required-document-master-route.provider';
+import { TRANSPORTATION_SET_ITEM_GROUPS_TRANSPORTATION_SET_ITEM_GROUP_ROUTE_PROVIDER } from './transportation-set-item-groups/transportation-set-item-group/providers/transportation-set-item-group-route.provider';
+import { TRANSPORTATION_SET_SUPPLIER_VIEW_TEMPLATES_TRANSPORTATION_SET_SUPPLIER_VIEW_TEMPLATE_ROUTE_PROVIDER } from './transportation-set-supplier-view-templates/transportation-set-supplier-view-template/providers/transportation-set-supplier-view-template-route.provider';
+import { TRANSPORTATION_SET_VIEW_TEMPLATES_TRANSPORTATION_SET_VIEW_TEMPLATE_ROUTE_PROVIDER } from './transportation-set-view-templates/transportation-set-view-template/providers/transportation-set-view-template-route.provider';
 
 @NgModule({
   declarations: [AppComponent],
@@ -124,6 +127,9 @@ import { PRODUCT_REQUIRED_DOCUMENT_MASTERS_PRODUCT_REQUIRED_DOCUMENT_MASTER_ROUT
     COMBINED_LANES_COMBINED_LANE_ROUTE_PROVIDER,
     COMBINED_LANE_ITEMS_COMBINED_LANE_ITEM_ROUTE_PROVIDER,
     PRODUCT_REQUIRED_DOCUMENT_MASTERS_PRODUCT_REQUIRED_DOCUMENT_MASTER_ROUTE_PROVIDER,
+    TRANSPORTATION_SET_ITEM_GROUPS_TRANSPORTATION_SET_ITEM_GROUP_ROUTE_PROVIDER,
+    TRANSPORTATION_SET_SUPPLIER_VIEW_TEMPLATES_TRANSPORTATION_SET_SUPPLIER_VIEW_TEMPLATE_ROUTE_PROVIDER,
+    TRANSPORTATION_SET_VIEW_TEMPLATES_TRANSPORTATION_SET_VIEW_TEMPLATE_ROUTE_PROVIDER,
   ],
   bootstrap: [AppComponent],
 })

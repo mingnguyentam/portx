@@ -1,3 +1,4 @@
+import * as ChatGroups from './chat-groups';
 import * as CombinedLaneItems from './combined-lane-items';
 import * as CombinedLanes from './combined-lanes';
 import * as Locations from './locations';
@@ -10,9 +11,13 @@ import * as ShippingMilestoneSteps from './shipping-milestone-steps';
 import * as ShippingMilestones from './shipping-milestones';
 import * as ShippingWorkflowDisplayItems from './shipping-workflow-display-items';
 import * as ShippingWorkflows from './shipping-workflows';
+import * as TransportationSetItemGroups from './transportation-set-item-groups';
 import * as TransportationSetItems from './transportation-set-items';
+import * as TransportationSetSupplierViewTemplates from './transportation-set-supplier-view-templates';
+import * as TransportationSetViewTemplates from './transportation-set-view-templates';
 import * as TransportationSets from './transportation-sets';
 export {
+  ChatGroups,
   CombinedLaneItems,
   CombinedLanes,
   Locations,
@@ -25,6 +30,9 @@ export {
   ShippingMilestones,
   ShippingWorkflowDisplayItems,
   ShippingWorkflows,
+  TransportationSetItemGroups,
   TransportationSetItems,
+  TransportationSetSupplierViewTemplates,
+  TransportationSetViewTemplates,
   TransportationSets,
 };

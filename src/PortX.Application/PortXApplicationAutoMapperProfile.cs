@@ -1,3 +1,7 @@
+using PortX.TransportationSetViewTemplates;
+using PortX.TransportationSetSupplierViewTemplates;
+using PortX.TransportationSetItemGroups;
+using PortX.TransportationSetItems;
 using System;
 using PortX.Shared;
 using Volo.Abp.AutoMapper;
@@ -16,5 +20,17 @@ public class PortXApplicationAutoMapperProfile : Profile
 
         CreateMap<ShippingWorkflow, ShippingWorkflowDto>();
         CreateMap<ShippingWorkflow, ShippingWorkflowExcelDto>();
+
+        CreateMap<TransportationSetItem, TransportationSetItemDto>();
+        CreateMap<TransportationSetItem, TransportationSetItemExcelDto>();
+
+        CreateMap<TransportationSetItemGroup, TransportationSetItemGroupDto>();
+        CreateMap<TransportationSetItemGroup, TransportationSetItemGroupExcelDto>();
+
+        CreateMap<TransportationSetSupplierViewTemplate, TransportationSetSupplierViewTemplateDto>();
+        CreateMap<TransportationSetSupplierViewTemplate, TransportationSetSupplierViewTemplateExcelDto>();
+
+        CreateMap<TransportationSetViewTemplate, TransportationSetViewTemplateDto>();
+        CreateMap<TransportationSetViewTemplate, TransportationSetViewTemplateExcelDto>();
     }
 }

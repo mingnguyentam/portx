@@ -157,6 +157,27 @@ const routes: Routes = [
         './product-required-document-masters/product-required-document-master/product-required-document-master.module'
       ).then(m => m.ProductRequiredDocumentMasterModule),
   },
+  {
+    path: 'transportation-set-item-groups',
+    loadChildren: () =>
+      import(
+        './transportation-set-item-groups/transportation-set-item-group/transportation-set-item-group.module'
+      ).then(m => m.TransportationSetItemGroupModule),
+  },
+  {
+    path: 'transportation-set-supplier-view-templates',
+    loadChildren: () =>
+      import(
+        './transportation-set-supplier-view-templates/transportation-set-supplier-view-template/transportation-set-supplier-view-template.module'
+      ).then(m => m.TransportationSetSupplierViewTemplateModule),
+  },
+  {
+    path: 'transportation-set-view-templates',
+    loadChildren: () =>
+      import(
+        './transportation-set-view-templates/transportation-set-view-template/transportation-set-view-template.module'
+      ).then(m => m.TransportationSetViewTemplateModule),
+  },
 ];
 
 @NgModule({

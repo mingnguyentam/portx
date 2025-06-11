@@ -1,0 +1,8 @@
+using PortX.TransportationSetSupplierViewTemplates;
+using Xunit;
+
+namespace PortX.EntityFrameworkCore.Applications.TransportationSetSupplierViewTemplates;
+
+public class EfCoreTransportationSetSupplierViewTemplatesAppServiceTests : TransportationSetSupplierViewTemplatesAppServiceTests<PortXEntityFrameworkCoreTestModule>
+{
+}
